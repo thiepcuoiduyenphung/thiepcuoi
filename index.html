@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thiệp cưới | Phùng Thị Duyên & Nguyễn Thanh Bình</title>
+
+  <!-- Open Graph for nice link preview (đổi og:image sau khi bạn có ảnh thumbnail.jpg) -->
+  <meta property="og:title" content="Thiệp cưới Duyên & Bình" />
+  <meta property="og:description" content="Kính mời bạn đến dự hôn lễ của Phùng Thị Duyên & Nguyễn Thanh Bình" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/hoangngokngheck/thiepcuoi/main/thumbb.png" />
+
+  <meta property="og:type" content="website" />
+ <meta property="og:url" content="https://hoangngokngheck.github.io/thiepcuoi/" />
+
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <!-- tiny-slider (lightweight slider) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+
+  <style>
+    /* Ảnh hai bên hero */
+    .hero-photos-sides {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: none; z-index: 1;
+      gap: 0; margin: 0;
+      padding-top: 8vh;
+    }
+    .hero-photo-side {
+      width: 220px;
+      max-width: 20vw;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: 0 16px 48px 0 rgba(184,50,90,0.18), 0 2px 12px #fff8;
+      opacity: 0.97;
+      filter: blur(0.2px) saturate(1.12);
+      transition: transform .4s cubic-bezier(.4,2,.6,1), box-shadow .3s, border .3s;
+      border: 6px solid #fff;
+      outline: 4px solid rgba(255,143,171,0.13);
+      background: linear-gradient(135deg, #fff7fb 60%, #ffe3ef 100%);
+      margin: 0;
+    }
+    .hero-photo-side:first-child {
+      transform: translateX(-2vw);
+    }
+    .hero-photo-side:last-child {
+      transform: translateX(2vw);
+    }
+    .hero-photo-side:hover {
+      z-index: 2;
+      transform: scale(1.07) rotate(-1.5deg);
+      box-shadow: 0 32px 64px 0 rgba(184,50,90,0.22), 0 4px 16px #fff8;
+      opacity: 1;
+      filter: none;
+      border: 6px solid #ff8fab;
+      outline: 6px solid #fff0f6;
+    }
+    @media (max-width: 1200px) {
+      .hero-photo-side { 
+        width: 160px; 
+        max-width: 28vw; 
+        border-radius: 18px; 
+      }
+      .hero-photos-sides {
+        padding-top: 10vh;
+      }
+    }
+    @media (max-width: 900px) {
+      .hero-photo-side { 
+        width: 110px; 
+        max-width: 24vw; 
+        border-radius: 12px;
+      }
+      .hero-photos-sides {
+        padding-top: 12vh;
+      }
+      .hero-photo-side:first-child {
+        transform: translateX(-3vw);
+      }
+      .hero-photo-side:last-child {
+        transform: translateX(3vw);
+      }
+    }
+    @media (max-width: 700px) {
+      .hero-photos-sides { 
+        position: relative;
+        height: auto;
+        margin-top: 20px;
+      }
+      .hero-photo-side {
+        width: 280px;
+        height: 380px;
+        max-width: 85vw;
+        border-radius: 24px;
+        transition: transform 0.4s ease;
+      }
+      .hero-photo-side:first-child {
+        position: relative;
+        margin: 0 auto;
+        transform: scale(1);
+        box-shadow: 0 20px 40px rgba(184,50,90,0.2);
+      }
+      .hero-photo-side:last-child {
+        display: none;
+      }
+    }
+    :root{
+  --bg: #fff7f9;
+  --primary: #b8325a;  /* rose */
+  --accent: #ff8fab;   /* soft pink */
+  --ink: #2b2b2b;
+  --muted: #7a7a7a;
+  --card: #ffffffcc;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --main-font: 'Quicksand', Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; background:linear-gradient(180deg,#fff7fb 0%, #fff 40%, #fff7fb 100%);
+      color:var(--ink); font-family:var(--main-font);
+      overflow-x:hidden;
+    }
+    a{color:var(--primary); text-decoration:none}
+
+    /* --- HERO --- */
+    .hero{
+      position:relative; 
+      min-height:100svh; 
+      display:grid; 
+      place-items:center; 
+      overflow:hidden;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.85) 50%,
+        rgba(255,255,255,0.95) 100%
+      );
+    }
+    .hero::before{
+      /* dreamy gradient glow */
+      content:""; position:absolute; inset:-30%;
+      background: radial-gradient(60% 60% at 30% 30%, #ffd6e9 0%, transparent 60%),
+                  radial-gradient(50% 50% at 70% 40%, #ffe3ef 0%, transparent 60%),
+                  radial-gradient(50% 50% at 50% 80%, #ffeaf2 0%, transparent 60%);
+      filter: blur(40px) saturate(1.1);
+      z-index:0; animation:floatGlow 12s ease-in-out infinite;
+    }
+    @keyframes floatGlow{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+
+    .petals{position:absolute; inset:0; z-index:1; pointer-events:none}
+
+    .hero-inner{
+      position:relative; 
+      z-index:2; 
+      text-align:center; 
+      padding: 60px 24px;
+      width:min(1100px,95%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    @media (max-width:700px) {
+      .hero-inner {
+        padding: 40px 20px;
+        gap: 16px;
+      }
+    }
+    .tag{display:inline-block; padding:8px 14px; border-radius:999px; background:#ffffffb8; backdrop-filter: blur(6px); box-shadow:var(--shadow); color:var(--primary); font-weight:600; letter-spacing:.04em}
+
+    .names{
+      font-family:'Dancing Script', cursive;
+      font-size: clamp(36px, 7vw, 86px);
+      margin:16px 0 6px;
+      line-height:1.05;
+      display:block;
+      white-space:normal;
+      word-break:keep-all;
+      text-align:center;
+      font-weight:700;
+      letter-spacing:0.01em;
+    }
+    .names .amp {
+      display:block;
+      font-size:0.7em;
+      margin:0.1em 0;
+    }
+    .amp{padding:0 .25em; color:var(--primary)}
+    .sub{color:var(--muted); font-size:clamp(14px, 2.4vw, 18px)}
+
+    .hero-card{margin:28px auto 0; max-width:820px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; display:flex; flex-wrap:wrap; gap:18px; align-items:center; justify-content:center; backdrop-filter: blur(8px)}
+    .hero-card .item{display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.05)}
+    .item svg{width:22px; height:22px; color:var(--primary)}
+
+    .cta{margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
+    .btn{padding:14px 20px; border:none; border-radius:999px; cursor:pointer; font-weight:600; letter-spacing:.02em; box-shadow:var(--shadow); transition:.25s transform,.25s box-shadow}
+    .btn.primary{background:var(--primary); color:#fff}
+    .btn.ghost{background:#fff; color:var(--primary);}
+    .btn:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(184,50,90,.25)}
+
+    /* --- SECTIONS --- */
+    section{padding:80px 24px}
+    .container{width:min(1100px,95%); margin:0 auto}
+  .section-title{font-family:var(--main-font); font-size:clamp(26px,4.8vw,44px); margin:0 0 14px; text-align:center; font-weight:700;}
+    .section-sub{color:var(--muted); text-align:center; margin:0 auto 36px; max-width:760px}
+
+    .grid-2{display:grid; grid-template-columns:1.1fr 1fr; gap:24px}
+    @media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
+
+    .card{background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:28px}
+
+    /* timeline */
+    .timeline{position:relative; margin:20px 0}
+    .timeline::before{content:""; position:absolute; left:22px; top:0; bottom:0; width:2px; background:linear-gradient(180deg, #ffd1e1, #ffc3d6)}
+    .t-item{position:relative; padding-left:64px; margin:24px 0}
+    .t-item::before{content:""; position:absolute; left:12px; top:6px; width:20px; height:20px; border-radius:50%; background:#fff; border:3px solid var(--accent); box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    .t-title{font-weight:700; color:var(--primary)}
+    .t-desc{color:var(--muted)}
+
+    /* gallery */
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 24px;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .gallery-wrap { position: relative; }
+    .gallery-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 999px; border: none; background: #ffffffcc; color: var(--primary);
+      box-shadow: var(--shadow); display:grid; place-items:center; cursor:pointer; font-size:26px; z-index:5;
+    }
+    .gallery-prev { left: 8px }
+    .gallery-next { right: 8px }
+    .gallery::-webkit-scrollbar { display: none; }
+    .gallery img {
+      flex: 0 0 auto;
+      width: 340px;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.10);
+      transform: translateZ(0);
+      transition: transform .3s;
+      scroll-snap-align: center;
+    }
+    .gallery img:hover { transform: translateY(-8px) scale(1.04); }
+  /* Ensure gallery images are visible even if 'reveal' hasn't been toggled yet */
+  .gallery .reveal { opacity: 1 !important; transform: none !important; }
+    @media (max-width:1100px) {
+      .gallery img { width: 220px; height: 270px; }
+    }
+    @media (max-width:700px) {
+      .gallery img { 
+        width: 200px; 
+        height: 440px;
+        margin-bottom: 12px;
+        border-radius: 14px;
+      }
+      .gallery { padding: 12px 0; }
+    }
+
+    /* footer */
+    .footer{padding:50px 24px 90px; text-align:center; color:#6b6b6b}
+
+    /* reveal animations */
+    .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* floating music button */
+    .music{position:fixed; right:18px; bottom:18px; z-index:30}
+    .music button{display:flex; align-items:center; gap:10px; background:#fff; border:2px solid var(--primary); color:var(--primary); padding:10px 14px; border-radius:999px; font-weight:600; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.12);}
+    .spin{animation:spin 9s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* map embed styling */
+    .map-wrap{border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
+
+  </style>
+</head>
+<body>
+  <canvas class="petals" id="petalsCanvas" aria-hidden="true"></canvas>
+
+  <header class="hero" id="home">
+    <div class="hero-inner">
+      <span class="tag">Thiệp mời</span>
+      <h1 class="names reveal">
+        <span>Phùng Thị Duyên</span>
+        <span class="amp">&</span>
+        <span>Nguyễn Thanh Bình</span>
+      </h1>
+      <p class="sub reveal" style="transition-delay:.08s">Trân trọng kính mời Quý vị đến dự hôn lễ của chúng tôi</p>
+      <div class="hero-photos-sides">
+        <img class="hero-photo-side" src="images/{199DC963-1FC9-4620-89C7-5821D2CEB261}.png" alt="Ảnh cưới chính">
+        <img class="hero-photo-side" src="images/{0F794505-9595-4DE7-A8C6-7FAC45A21230}.png" alt="Ảnh cưới phụ">
+      </div>
+
+      <div class="hero-card reveal" style="transition-delay:.16s">
+        <div class="item" title="Thời gian">
+          <!-- clock icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <div>
+            <div><strong>11-12/10/2025</strong></div>
+            <small>Thứ 7 & Chủ nhật</small>
+          </div>
+        </div>
+        <div class="item" title="Địa điểm">
+          <!-- map pin icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div>
+            <div><strong>Nhà gái: TDP Đồng Tuấn, thị xã Chũ, tỉnh Bắc Giang</strong></div>
+            <small>Nhà trai: Lục Nam, tỉnh Bắc Giang</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta reveal" style="transition-delay:.24s">
+        <a class="btn primary" href="#details">Xem chi tiết</a>
+  <a class="btn ghost" href="#map">Xem bản đồ</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="details">
+    <div class="container grid-2">
+      <div class="card reveal">
+        <h2 class="section-title">Thông tin lễ cưới</h2>
+        <p class="section-sub">Sự hiện diện của Quý vị là niềm vinh hạnh lớn lao đối với gia đình chúng tôi.</p>
+        <div style="display:grid; gap:16px;">
+          <div style="display:flex; align-items:center; gap:12px">
+            <div style="width:42px;height:42px; display:grid;place-items:center; border-radius:12px; background:#fff0f5; color:var(--primary)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <div>
+              <div style="font-weight:700">Ngày: 11-12/10/2025</div>
+              <div class="t-desc">Đón khách: 07:30 • Khai tiệc: 08:00</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px">
+            <div style="width:42px;height:42px; display:grid;place-items:center; border-radius:12px; background:#fff0f5; color:var(--primary)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div>
+              <div style="font-weight:700">Nhà gái: TDP Đông Tuấn, thị xã Chũ, tỉnh Bắc Giang</div>
+              <div class="t-desc">Nhà trai: Thôn Chính Hạ, xã Bắc Lũng, tỉnh Bắc Ninh</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px">
+            <div style="width:42px;height:42px; display:grid;place-items:center; border-radius:12px; background:#fff0f5; color:var(--primary); margin-top:4px">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <div>
+              <div style="font-weight:700">Cô dâu: Phùng Thị Duyên</div>
+              <div class="t-desc">SĐT: 0348162257</div>
+              <div style="margin:8px 0 4px; color:var(--muted)">Con ông: Phùng Văn Đạo</div>
+              <div style="margin-bottom:8px; color:var(--muted)">Con bà: Đỗ Thị Tư</div>
+              
+              <div style="font-weight:700; margin-top:12px">Chú rể: Nguyễn Thanh Bình</div>
+              <div class="t-desc">SĐT: 0386448731</div>
+              <div style="margin:8px 0 4px; color:var(--muted)">Con ông: Nguyễn Văn Huynh</div>
+              <div style="color:var(--muted)">Con bà: Vũ Thị Vui</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal" style="display:grid; place-items:center; text-align:center; background:linear-gradient(145deg,#fff,#fff0f6)">
+  <blockquote style="font-family:var(--main-font); font-size:clamp(18px,2.4vw,24px); margin:0 0 12px; color:#7a2940; font-weight:600">
+          “Tình yêu không phải là nhìn nhau, mà là cùng nhìn về một hướng.”
+        </blockquote>
+        <small style="color:var(--muted)">— Antoine de Saint‑Exupéry</small>
+        <img alt="Ảnh kỷ niệm" src="images/{43E9A63A-EB98-4BF8-B475-B30F88097634}.png" style="width:100%; max-width:420px; height:auto; object-fit:cover; border-radius:14px; margin:18px auto 0; display:block">
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="container">
+      <h2 class="section-title reveal">Lịch trình ngày cưới</h2>
+      <p class="section-sub reveal">Một ngày đáng nhớ được bắt đầu từ những khoảnh khắc giản dị.</p>
+      <div class="timeline">
+        <div class="t-item reveal"><div class="t-title">07:30 — Đón khách</div><div class="t-desc">Chào đón Quý khách, chụp ảnh lưu niệm</div></div>
+        <div class="t-item reveal"><div class="t-title">08:00 — Khai tiệc</div><div class="t-desc">Nghi thức, phát biểu, nâng ly chúc mừng</div></div>
+        <div class="t-item reveal"><div class="t-title">10:00 — Văn nghệ & chúc phúc</div><div class="t-desc">Cùng sẻ chia niềm vui, trò chuyện</div></div>
+        <div class="t-item reveal"><div class="t-title">12:00 — Kết thúc</div><div class="t-desc">Gửi lời cảm ơn và quà tặng</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title reveal">Khoảnh khắc</h2>
+      <p class="section-sub reveal">Một vài hình ảnh ngọt ngào của Duyên & Bình</p>
+      <div class="gallery-wrap" style="position:relative">
+        <div class="gallery" id="gallerySlider">
+  <img class="reveal" src="images/{0EC1193D-2F82-4E28-8DF1-06EA9B61D031}.png" alt="Khoảnh khắc 1">
+  <img class="reveal" src="images/{0F794505-9595-4DE7-A8C6-7FAC45A21230}.png" alt="Khoảnh khắc 2">
+  <img class="reveal" src="images/{1701DC27-C5D4-4790-9A9D-82777E59DF86}.png" alt="Khoảnh khắc 3">
+  <img class="reveal" src="images/{1925C8E7-C8A6-48B5-998A-6C4027F8BFD9}.png" alt="Khoảnh khắc 4">
+  <img class="reveal" src="images/{199DC963-1FC9-4620-89C7-5821D2CEB261}.png" alt="Khoảnh khắc 5">
+  <img class="reveal" src="images/{2C6FE81C-DFCF-4A25-BF42-34A2FD91F1A1}.png" alt="Khoảnh khắc 6">
+  <img class="reveal" src="images/{43E9A63A-EB98-4BF8-B475-B30F88097634}.png" alt="Khoảnh khắc 7">
+  <img class="reveal" src="images/{6CA26D29-5873-4CD9-BE4D-7DB40F0B8ED4}.png" alt="Khoảnh khắc 8">
+  <img class="reveal" src="images/{B0904462-5DE9-4512-ADFA-BD00D20FB8DF}.png" alt="Khoảnh khắc 9">
+  <img class="reveal" src="images/{B83123E5-C040-43C0-913E-29D236BEA2C0}.png" alt="Khoảnh khắc 10">
+  <img class="reveal" src="images/{B9E15A52-BE33-4F82-9EC6-C3BA17831CA0}.png" alt="Khoảnh khắc 11">
+  <img class="reveal" src="images/{DB4B6EFC-6735-4A9B-91D5-77B48B70D647}.png" alt="Khoảnh khắc 12">
+  <img class="reveal" src="images/{E28A9497-0A42-4D3F-BB51-C940FA44E4FB}.png" alt="Khoảnh khắc 13">
+  </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="map">
+    <div class="container">
+      <h2 class="section-title reveal">Bản đồ</h2>
+      <p class="section-sub reveal">Nhấn vào bản đồ để mở trong Google Maps và chỉ đường.</p>
+      <div class="map-wrap reveal" style="margin-bottom:24px">
+        <h3 style="margin:12px 0 6px">Nhà gái: TDP Đồng Tuấn, thị xã Chũ, tỉnh Bắc Giang</h3>
+        <a href="https://maps.app.goo.gl/4Qk2Qw6Qw2Qw6Qw6A" target="_blank" style="display:block;margin-bottom:8px;color:var(--primary)">Xem trên Google Maps</a>
+        <iframe title="map-nhagai" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d5428.8248450335!2d106.58151243216871!3d21.414566513903548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDI0JzU5LjgiTiAxMDbCsDM0JzU3LjciRQ!5e0!3m2!1svi!2s!4v1758760285166!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="map-wrap reveal">
+        <h3 style="margin:12px 0 6px">Nhà trai: Thôn Chính Hạ, xã Bắc Lũng, tỉnh Bắc Ninh</h3>
+        <a href="https://maps.app.goo.gl/6Qw2Qw6Qw2Qw6Qw6B" target="_blank" style="display:block;margin-bottom:8px;color:var(--primary)">Xem trên Google Maps</a>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3717.6222090352717!2d106.33442307526373!3d21.28641698042817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDE3JzExLjEiTiAxMDbCsDIwJzEzLjIiRQ!5e0!3m2!1svi!2s!4v1759235501150!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="reveal">Xin trân trọng cảm ơn Quý vị đã dành thời gian tham dự hôn lễ của chúng tôi. 💐</div>
+      <div style="margin-top:8px; font-size:14px" class="reveal">Thiệp cưới của Duyên & Bình</div>
+    </div>
+  </footer>
+
+  <!-- Floating Music Control (tuỳ chọn, thay audio src bằng bài nhạc bạn có quyền sử dụng) -->
+  <div class="music">
+    <button id="musicBtn" aria-label="Music toggle">
+      <svg class="spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="14" height="14" rx="2" ry="2"></rect></svg>
+      <span>Nhạc</span>
+    </button>
+  </div>
+
+  <audio id="bgm" preload="auto" loop>
+  <source src="asset/cuoinhaudi.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    // Intersection Observer cho hiệu ứng reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show') })
+    },{threshold: .16});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // Nhạc nền (lưu ý: iOS/Chrome mobile chỉ phát sau khi người dùng tương tác)
+    const bgm = document.getElementById('bgm');
+    const btn = document.getElementById('musicBtn');
+    let playing = false;
+    btn.addEventListener('click', async ()=>{
+      try{
+        if(!playing){ await bgm.play(); playing=true; btn.querySelector('span').textContent='Đang phát'; }
+        else { bgm.pause(); playing=false; btn.querySelector('span').textContent='Nhạc'; }
+      }catch(err){ console.warn('Không thể phát nhạc tự động:', err); }
+    });
+
+    // Hiệu ứng cánh hoa rơi bằng Canvas (nhẹ, mượt trên mobile)
+    const cvs = document.getElementById('petalsCanvas');
+    const ctx = cvs.getContext('2d');
+    let W, H, petals = [];
+    const COUNT = 60;
+
+    function resize(){ W = cvs.width = window.innerWidth; H = cvs.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
+    function rand(min,max){ return Math.random()*(max-min)+min }
+
+    function createPetal(){
+      return {
+        x: rand(0, W), y: rand(-H, 0),
+        r: rand(6, 14),
+        speedY: rand(0.4, 1.4),
+        drift: rand(-0.6, 0.6),
+        rot: rand(0, Math.PI*2),
+        rotSpeed: rand(-0.02, 0.02),
+        hue: rand(338, 355) // hồng
+      }
+    }
+    for(let i=0;i<COUNT;i++) petals.push(createPetal());
+
+    function drawPetal(p){
+      const {x,y,r,rot,hue} = p; ctx.save(); ctx.translate(x,y); ctx.rotate(rot);
+      // cánh hoa béo hình giọt nước
+      const grd = ctx.createRadialGradient(0,0, r*0.2, 0,0, r);
+      grd.addColorStop(0, `hsla(${hue}, 70%, 92%, .95)`);
+      grd.addColorStop(1, `hsla(${hue}, 80%, 80%, .75)`);
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.moveTo(0, -r*0.8);
+      ctx.bezierCurveTo(r*0.9, -r*0.8, r*1.0, r*0.4, 0, r);
+      ctx.bezierCurveTo(-r*1.0, r*0.4, -r*0.9, -r*0.8, 0, -r*0.8);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+      petals.forEach(p=>{
+        p.y += p.speedY; p.x += p.drift; p.rot += p.rotSpeed;
+        if(p.y > H + 20) { p.y = -20; p.x = rand(0,W) }
+        if(p.x < -20) p.x = W+20; if(p.x > W+20) p.x = -20;
+        drawPetal(p);
+      })
+      requestAnimationFrame(tick);
+    }
+    tick();
+  </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+<script>
+  // initialize tiny-slider for the gallery
+  try {
+    const slider = tns({
+      container: '#gallerySlider',
+      items: 1,
+      slideBy: 1,
+      autoplay: true,
+      autoplayButtonOutput: false,
+      autoplayTimeout: 4200,
+      speed: 800,
+      controls: false,
+      nav: false,
+      loop: true,
+      mouseDrag: true,
+      gutter: 24,
+      center: true,
+      fixedWidth: 340,
+      responsive: {
+        700: { 
+          fixedWidth: 220,
+          gutter: 20,
+          edgePadding: 50
+        },
+        1100: { 
+          fixedWidth: 340,
+          gutter: 24,
+          edgePadding: 0
+        }
+      }
+    });
+
+    // Pause on pointerdown / mouseenter and resume after timeout
+    let resumeTimer;
+    function pauseSlider() { try { slider.pause(); } catch(e){} clearTimeout(resumeTimer); }
+    function resumeSliderDelayed() { clearTimeout(resumeTimer); resumeTimer = setTimeout(()=>{ try{ slider.play(); }catch(e){} }, 3000); }
+
+    const container = document.getElementById('gallerySlider');
+    if (container) {
+      container.addEventListener('pointerdown', () => { pauseSlider(); });
+      container.addEventListener('pointerup', () => { resumeSliderDelayed(); });
+      container.addEventListener('pointercancel', () => { resumeSliderDelayed(); });
+      container.addEventListener('mouseleave', () => { resumeSliderDelayed(); });
+      container.addEventListener('mouseenter', () => { pauseSlider(); });
+      // touch events for some older browsers
+      container.addEventListener('touchstart', () => { pauseSlider(); }, { passive: true });
+      container.addEventListener('touchend', () => { resumeSliderDelayed(); });
+    }
+  } catch (e) { console.error('tiny-slider init failed', e); }
+</script>
+</html>
